@@ -98,7 +98,7 @@ public class BoardFactory {
         }
 
         @Override
-        public boolean isAccessibleTo(Unit unit) {
+        public boolean isAccessibleTo(JpacmanUnit unit) {
             return false;
         }
 
@@ -131,7 +131,7 @@ public class BoardFactory {
         }
 
         @Override
-        public boolean isAccessibleTo(Unit unit) {
+        public boolean isAccessibleTo(JpacmanUnit unit) {
             return true;
         }
 

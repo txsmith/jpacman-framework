@@ -12,7 +12,7 @@ import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 import nl.tudelft.jpacman.level.LevelFactory;
 import nl.tudelft.jpacman.level.MapParser;
 import nl.tudelft.jpacman.level.Pellet;
@@ -56,7 +56,7 @@ class NavigationTest {
         Square s1 = b.squareAt(0, 0);
         Square s2 = b.squareAt(0, 0);
         List<Direction> path = Navigation
-            .shortestPath(s1, s2, mock(Unit.class));
+            .shortestPath(s1, s2, mock(JpacmanUnit.class));
         assertThat(path).isEmpty();
     }
 
@@ -71,7 +71,7 @@ class NavigationTest {
         Square s1 = b.squareAt(1, 1);
         Square s2 = b.squareAt(3, 1);
         List<Direction> path = Navigation
-            .shortestPath(s1, s2, mock(Unit.class));
+            .shortestPath(s1, s2, mock(JpacmanUnit.class));
         assertThat(path).isNull();
     }
 
@@ -99,7 +99,7 @@ class NavigationTest {
         Square s1 = b.squareAt(1, 1);
         Square s2 = b.squareAt(2, 1);
         List<Direction> path = Navigation
-            .shortestPath(s1, s2, mock(Unit.class));
+            .shortestPath(s1, s2, mock(JpacmanUnit.class));
         assertThat(path).containsExactly(Direction.EAST);
     }
 
@@ -113,7 +113,7 @@ class NavigationTest {
         Square s1 = b.squareAt(1, 1);
         Square s2 = b.squareAt(2, 2);
         List<Direction> path = Navigation
-            .shortestPath(s1, s2, mock(Unit.class));
+            .shortestPath(s1, s2, mock(JpacmanUnit.class));
         assertThat(path).containsExactly(Direction.EAST, Direction.SOUTH);
     }
 
@@ -138,7 +138,7 @@ class NavigationTest {
     void testNoNearestUnit() {
         Board b = parser.parseMap(Lists.newArrayList(" ")).getBoard();
         Square s1 = b.squareAt(0, 0);
-        Unit unit = Navigation.findNearest(Pellet.class, s1);
+        JpacmanUnit unit = Navigation.findNearest(Pellet.class, s1);
         assertThat(unit).isNull();
     }
 
@@ -153,7 +153,7 @@ class NavigationTest {
         try (InputStream i = getClass().getResourceAsStream("/board.txt")) {
             Board b = parser.parseMap(i).getBoard();
             Square s1 = b.squareAt(1, 1);
-            Unit unit = Navigation.findNearest(Ghost.class, s1);
+            JpacmanUnit unit = Navigation.findNearest(Ghost.class, s1);
             assertThat(unit).isNotNull();
         }
     }

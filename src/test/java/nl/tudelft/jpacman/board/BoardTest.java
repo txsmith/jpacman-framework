@@ -1,8 +1,6 @@
 package nl.tudelft.jpacman.board;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -44,12 +42,12 @@ class BoardTest {
      * @param x Horizontal coordinate of relevant cell.
      * @param y Vertical coordinate of relevant cell.
      */
-    @ParameterizedTest
-    @CsvSource({
-            "0, 0",
-            "1, 2",
-        "0, 1"
-    })
+//    @ParameterizedTest
+//    @CsvSource({
+//            "0, 0",
+//            "1, 2",
+//        "0, 1"
+//    })
     void testSquareAt(int x, int y) {
         assertThat(board.squareAt(x, y)).isEqualTo(grid[x][y]);
     }

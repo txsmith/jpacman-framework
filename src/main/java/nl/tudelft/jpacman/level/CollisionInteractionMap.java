@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 
 /**
  * A map of possible collisions and their handlers.
@@ -18,8 +18,8 @@ public class CollisionInteractionMap implements CollisionMap {
     /**
      * The collection of collision handlers.
      */
-    private final Map<Class<? extends Unit>,
-        Map<Class<? extends Unit>, CollisionHandler<?, ?>>> handlers;
+    private final Map<Class<? extends JpacmanUnit>,
+        Map<Class<? extends JpacmanUnit>, CollisionHandler<?, ?>>> handlers;
 
     /**
      * Creates a new, empty collision map.
@@ -44,7 +44,7 @@ public class CollisionInteractionMap implements CollisionMap {
      * @param handler
      *            The handler that handles the collision.
      */
-    public <C1 extends Unit, C2 extends Unit> void onCollision(
+    public <C1 extends JpacmanUnit, C2 extends JpacmanUnit> void onCollision(
         Class<C1> collider, Class<C2> collidee, CollisionHandler<C1, C2> handler) {
         onCollision(collider, collidee, true, handler);
     }
@@ -68,7 +68,7 @@ public class CollisionInteractionMap implements CollisionMap {
      * @param handler
      *            The handler that handles the collision.
      */
-    public <C1 extends Unit, C2 extends Unit> void onCollision(
+    public <C1 extends JpacmanUnit, C2 extends JpacmanUnit> void onCollision(
         Class<C1> collider, Class<C2> collidee, boolean symetric,
         CollisionHandler<C1, C2> handler) {
         addHandler(collider, collidee, handler);
@@ -87,13 +87,13 @@ public class CollisionInteractionMap implements CollisionMap {
      * @param handler
      *            The handler that handles the collision.
      */
-    private void addHandler(Class<? extends Unit> collider,
-                            Class<? extends Unit> collidee, CollisionHandler<?, ?> handler) {
+    private void addHandler(Class<? extends JpacmanUnit> collider,
+                            Class<? extends JpacmanUnit> collidee, CollisionHandler<?, ?> handler) {
         if (!handlers.containsKey(collider)) {
             handlers.put(collider, new HashMap<>());
         }
 
-        Map<Class<? extends Unit>, CollisionHandler<?, ?>> map = handlers.get(collider);
+        Map<Class<? extends JpacmanUnit>, CollisionHandler<?, ?>> map = handlers.get(collider);
         map.put(collidee, handler);
     }
 
@@ -113,15 +113,15 @@ public class CollisionInteractionMap implements CollisionMap {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public <C1 extends Unit, C2 extends Unit> void collide(C1 collider,
-                                                           C2 collidee) {
-        Class<? extends Unit> colliderKey = getMostSpecificClass(handlers, collider.getClass());
+    public <C1 extends JpacmanUnit, C2 extends JpacmanUnit> void collide(C1 collider,
+                                                                         C2 collidee) {
+        Class<? extends JpacmanUnit> colliderKey = getMostSpecificClass(handlers, collider.getClass());
         if (colliderKey == null) {
             return;
         }
 
-        Map<Class<? extends Unit>, CollisionHandler<?, ?>> map = handlers.get(colliderKey);
-        Class<? extends Unit> collideeKey = getMostSpecificClass(map, collidee.getClass());
+        Map<Class<? extends JpacmanUnit>, CollisionHandler<?, ?>> map = handlers.get(colliderKey);
+        Class<? extends JpacmanUnit> collideeKey = getMostSpecificClass(map, collidee.getClass());
         if (collideeKey == null) {
             return;
         }
@@ -144,10 +144,10 @@ public class CollisionInteractionMap implements CollisionMap {
      *            The class to search the most suitable key for.
      * @return The most specific class from the key collection.
      */
-    private Class<? extends Unit> getMostSpecificClass(
-        Map<Class<? extends Unit>, ?> map, Class<? extends Unit> key) {
-        List<Class<? extends Unit>> collideeInheritance = getInheritance(key);
-        for (Class<? extends Unit> pointer : collideeInheritance) {
+    private Class<? extends JpacmanUnit> getMostSpecificClass(
+        Map<Class<? extends JpacmanUnit>, ?> map, Class<? extends JpacmanUnit> key) {
+        List<Class<? extends JpacmanUnit>> collideeInheritance = getInheritance(key);
+        for (Class<? extends JpacmanUnit> pointer : collideeInheritance) {
             if (map.containsKey(pointer)) {
                 return pointer;
             }
@@ -164,21 +164,21 @@ public class CollisionInteractionMap implements CollisionMap {
      * @return A list of all classes and interfaces the class inherits.
      */
     @SuppressWarnings("unchecked")
-    private List<Class<? extends Unit>> getInheritance(
-        Class<? extends Unit> clazz) {
-        List<Class<? extends Unit>> found = new ArrayList<>();
+    private List<Class<? extends JpacmanUnit>> getInheritance(
+        Class<? extends JpacmanUnit> clazz) {
+        List<Class<? extends JpacmanUnit>> found = new ArrayList<>();
         found.add(clazz);
 
         int index = 0;
         while (found.size() > index) {
             Class<?> current = found.get(index);
             Class<?> superClass = current.getSuperclass();
-            if (superClass != null && Unit.class.isAssignableFrom(superClass)) {
-                found.add((Class<? extends Unit>) superClass);
+            if (superClass != null && JpacmanUnit.class.isAssignableFrom(superClass)) {
+                found.add((Class<? extends JpacmanUnit>) superClass);
             }
             for (Class<?> classInterface : current.getInterfaces()) {
-                if (Unit.class.isAssignableFrom(classInterface)) {
-                    found.add((Class<? extends Unit>) classInterface);
+                if (JpacmanUnit.class.isAssignableFrom(classInterface)) {
+                    found.add((Class<? extends JpacmanUnit>) classInterface);
                 }
             }
             index++;
@@ -197,7 +197,7 @@ public class CollisionInteractionMap implements CollisionMap {
      * @param <C2>
      *            The collidee type.
      */
-    public interface CollisionHandler<C1 extends Unit, C2 extends Unit> {
+    public interface CollisionHandler<C1 extends JpacmanUnit, C2 extends JpacmanUnit> {
 
         /**
          * Handles the collision between two colliding parties.
@@ -220,7 +220,7 @@ public class CollisionInteractionMap implements CollisionMap {
      * @param <C2>
      *            The collidee type.
      */
-    private static class InverseCollisionHandler<C1 extends Unit, C2 extends Unit>
+    private static class InverseCollisionHandler<C1 extends JpacmanUnit, C2 extends JpacmanUnit>
         implements CollisionHandler<C1, C2> {
 
         /**

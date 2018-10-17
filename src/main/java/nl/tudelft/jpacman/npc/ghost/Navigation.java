@@ -8,7 +8,7 @@ import java.util.Set;
 import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 
 /**
  * Navigation provides utility to nagivate on {@link Square}s.
@@ -40,7 +40,7 @@ public final class Navigation {
      *         square, an empty list is returned.
      */
     public static List<Direction> shortestPath(Square from, Square to,
-                                                         Unit traveller) {
+                                                         JpacmanUnit traveller) {
         if (from.equals(to)) {
             return new ArrayList<>();
         }
@@ -60,7 +60,7 @@ public final class Navigation {
         return null;
     }
 
-    private static void addNewTargets(Unit traveller, List<Node> targets,
+    private static void addNewTargets(JpacmanUnit traveller, List<Node> targets,
                                       Set<Square> visited, Node node, Square square) {
         for (Direction direction : Direction.values()) {
             Square target = square.getSquareAt(direction);
@@ -83,8 +83,8 @@ public final class Navigation {
      * @return The nearest unit of the given type, or <code>null</code> if no
      *         such unit could be found.
      */
-    public static Unit findNearest(Class<? extends Unit> type,
-                                             Square currentLocation) {
+    public static JpacmanUnit findNearest(Class<? extends JpacmanUnit> type,
+                                          Square currentLocation) {
         List<Square> toDo = new ArrayList<>();
         Set<Square> visited = new HashSet<>();
 
@@ -92,7 +92,7 @@ public final class Navigation {
 
         while (!toDo.isEmpty()) {
             Square square = toDo.remove(0);
-            Unit unit = findUnit(type, square);
+            JpacmanUnit unit = findUnit(type, square);
             if (unit != null) {
                 assert unit.hasSquare();
                 return unit;
@@ -118,7 +118,7 @@ public final class Navigation {
      *
      * @return the first unit found of type clazz, or null.
      */
-    public static <T extends Unit> T findUnitInBoard(Class<T> clazz, Board board) {
+    public static <T extends JpacmanUnit> T findUnitInBoard(Class<T> clazz, Board board) {
         for (int y = 0; y < board.getHeight(); y++) {
             for (int x = 0; x < board.getWidth(); x++) {
                 final T ghost = Navigation.findUnit(clazz, board.squareAt(x, y));
@@ -145,8 +145,8 @@ public final class Navigation {
      *         <code>null</code> of none does.
      */
     @SuppressWarnings("unchecked")
-    public static <T extends Unit> T findUnit(Class<T> type, Square square) {
-        for (Unit unit : square.getOccupants()) {
+    public static <T extends JpacmanUnit> T findUnit(Class<T> type, Square square) {
+        for (JpacmanUnit unit : square.getOccupants()) {
             if (type.isInstance(unit)) {
                 assert unit.hasSquare();
                 return (T) unit;

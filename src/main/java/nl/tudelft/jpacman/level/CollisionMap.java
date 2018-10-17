@@ -1,6 +1,6 @@
 package nl.tudelft.jpacman.level;
 
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 
 /**
  * A table containing all (relevant) collisions between different types of
@@ -25,6 +25,6 @@ public interface CollisionMap {
      * @param collidee
      *            The unit that is already on the square that is being invaded.
      */
-    <C1 extends Unit, C2 extends Unit> void collide(C1 collider, C2 collidee);
+    <C1 extends JpacmanUnit, C2 extends JpacmanUnit> void collide(C1 collider, C2 collidee);
 
 }

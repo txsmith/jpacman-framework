@@ -12,7 +12,6 @@ import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.npc.Ghost;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * Creates new {@link Level}s from text representations.
@@ -239,8 +238,6 @@ public class MapParser {
      * @throws IOException
      *             when the resource could not be read.
      */
-    @SuppressFBWarnings(value = "OBL_UNSATISFIED_OBLIGATION",
-                        justification = "try with resources always cleans up")
     public Level parseMap(String mapName) throws IOException {
         try (InputStream boardStream = MapParser.class.getResourceAsStream(mapName)) {
             if (boardStream == null) {

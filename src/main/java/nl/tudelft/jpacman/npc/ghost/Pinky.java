@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.sprite.Sprite;
@@ -91,7 +91,7 @@ public class Pinky extends Ghost {
     public Optional<Direction> nextAiMove() {
         assert hasSquare();
 
-        Unit player = Navigation.findNearest(Player.class, getSquare());
+        JpacmanUnit player = Navigation.findNearest(Player.class, getSquare());
         if (player == null) {
             return Optional.empty();
         }

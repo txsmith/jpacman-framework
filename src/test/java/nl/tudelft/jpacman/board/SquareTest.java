@@ -31,7 +31,7 @@ class SquareTest {
      */
     @Test
     void testOccupy() {
-        Unit occupant = mock(Unit.class);
+        JpacmanUnit occupant = mock(JpacmanUnit.class);
         square.put(occupant);
 
         assertThat(square.getOccupants()).contains(occupant);
@@ -43,7 +43,7 @@ class SquareTest {
      */
     @Test
     void testLeave() {
-        Unit occupant = mock(Unit.class);
+        JpacmanUnit occupant = mock(JpacmanUnit.class);
         square.put(occupant);
         square.remove(occupant);
 
@@ -55,8 +55,8 @@ class SquareTest {
      */
     @Test
     void testOrder() {
-        Unit o1 = mock(Unit.class);
-        Unit o2 = mock(Unit.class);
+        JpacmanUnit o1 = mock(JpacmanUnit.class);
+        JpacmanUnit o2 = mock(JpacmanUnit.class);
         square.put(o1);
         square.put(o2);
 

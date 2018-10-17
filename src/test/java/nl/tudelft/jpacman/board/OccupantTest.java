@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test suite to confirm that {@link Unit}s correctly (de)occupy squares.
+ * Test suite to confirm that {@link JpacmanUnit}s correctly (de)occupy squares.
  *
  * @author Jeroen Roosen 
  *
@@ -16,14 +16,14 @@ class OccupantTest {
     /**
      * The unit under test.
      */
-    private Unit unit;
+    private JpacmanUnit unit;
 
     /**
      * Resets the unit under test.
      */
     @BeforeEach
     void setUp() {
-        unit = new BasicUnit();
+        unit = new BasicJpacmanUnit();
     }
 
     /**

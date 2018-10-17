@@ -1,6 +1,6 @@
 package nl.tudelft.jpacman.level;
 
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 import nl.tudelft.jpacman.sprite.Sprite;
 
 /**
@@ -8,7 +8,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
  *
  * @author Jeroen Roosen 
  */
-public class Pellet extends Unit {
+public class Pellet extends JpacmanUnit {
 
     /**
      * The sprite of this unit.

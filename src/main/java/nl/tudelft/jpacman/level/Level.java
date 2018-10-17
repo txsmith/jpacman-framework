@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 import nl.tudelft.jpacman.npc.Ghost;
 
 /**
@@ -169,7 +169,7 @@ public class Level {
      * @param direction
      *            The direction to move the unit in.
      */
-    public void move(Unit unit, Direction direction) {
+    public void move(JpacmanUnit unit, Direction direction) {
         assert unit != null;
         assert direction != null;
         assert unit.hasSquare();
@@ -184,9 +184,9 @@ public class Level {
             Square destination = location.getSquareAt(direction);
 
             if (destination.isAccessibleTo(unit)) {
-                List<Unit> occupants = destination.getOccupants();
+                List<JpacmanUnit> occupants = destination.getOccupants();
                 unit.occupy(destination);
-                for (Unit occupant : occupants) {
+                for (JpacmanUnit occupant : occupants) {
                     collisions.collide(unit, occupant);
                 }
             }
@@ -301,7 +301,7 @@ public class Level {
         int pellets = 0;
         for (int x = 0; x < board.getWidth(); x++) {
             for (int y = 0; y < board.getHeight(); y++) {
-                for (Unit unit : board.squareAt(x, y).getOccupants()) {
+                for (JpacmanUnit unit : board.squareAt(x, y).getOccupants()) {
                     if (unit instanceof Pellet) {
                         pellets++;
                     }

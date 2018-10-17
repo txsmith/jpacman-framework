@@ -2,7 +2,7 @@ package nl.tudelft.jpacman.npc.ghost;
 
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.sprite.Sprite;
@@ -84,8 +84,8 @@ public class Inky extends Ghost {
     @Override
     public Optional<Direction> nextAiMove() {
         assert hasSquare();
-        Unit blinky = Navigation.findNearest(Blinky.class, getSquare());
-        Unit player = Navigation.findNearest(Player.class, getSquare());
+        JpacmanUnit blinky = Navigation.findNearest(Blinky.class, getSquare());
+        JpacmanUnit player = Navigation.findNearest(Player.class, getSquare());
 
         if (blinky == null || player == null) {
             return Optional.empty();

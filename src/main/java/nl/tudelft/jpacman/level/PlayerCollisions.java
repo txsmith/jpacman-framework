@@ -1,6 +1,6 @@
 package nl.tudelft.jpacman.level;
 
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 import nl.tudelft.jpacman.npc.Ghost;
 
 /**
@@ -17,7 +17,7 @@ import nl.tudelft.jpacman.npc.Ghost;
 public class PlayerCollisions implements CollisionMap {
 
     @Override
-    public void collide(Unit mover, Unit collidedOn) {
+    public void collide(JpacmanUnit mover, JpacmanUnit collidedOn) {
         if (mover instanceof Player) {
             playerColliding((Player) mover, collidedOn);
         }
@@ -29,7 +29,7 @@ public class PlayerCollisions implements CollisionMap {
         }
     }
 
-    private void playerColliding(Player player, Unit collidedOn) {
+    private void playerColliding(Player player, JpacmanUnit collidedOn) {
         if (collidedOn instanceof Ghost) {
             playerVersusGhost(player, (Ghost) collidedOn);
         }
@@ -38,13 +38,13 @@ public class PlayerCollisions implements CollisionMap {
         }
     }
 
-    private void ghostColliding(Ghost ghost, Unit collidedOn) {
+    private void ghostColliding(Ghost ghost, JpacmanUnit collidedOn) {
         if (collidedOn instanceof Player) {
             playerVersusGhost((Player) collidedOn, ghost);
         }
     }
 
-    private void pelletColliding(Pellet pellet, Unit collidedOn) {
+    private void pelletColliding(Pellet pellet, JpacmanUnit collidedOn) {
         if (collidedOn instanceof Player) {
             playerVersusPellet((Player) collidedOn, pellet);
         }

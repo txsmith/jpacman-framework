@@ -7,12 +7,12 @@ import nl.tudelft.jpacman.sprite.Sprite;
  *
  * @author Jeroen Roosen 
  */
-class BasicUnit extends Unit {
+class BasicJpacmanUnit extends JpacmanUnit {
 
     /**
      * Creates a new basic unit.
      */
-    BasicUnit() {
+    BasicJpacmanUnit() {
         super();
     }
 

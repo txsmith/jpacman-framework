@@ -1,6 +1,6 @@
 package nl.tudelft.jpacman.level;
 
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 import nl.tudelft.jpacman.npc.Ghost;
 
 /**
@@ -19,7 +19,7 @@ public class DefaultPlayerInteractionMap implements CollisionMap {
     private final CollisionMap collisions = defaultCollisions();
 
     @Override
-    public void collide(Unit mover, Unit movedInto) {
+    public void collide(JpacmanUnit mover, JpacmanUnit movedInto) {
         collisions.collide(mover, movedInto);
     }
 

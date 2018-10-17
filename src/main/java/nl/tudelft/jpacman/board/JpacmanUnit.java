@@ -7,7 +7,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
  *
  * @author Jeroen Roosen 
  */
-public abstract class Unit {
+public abstract class JpacmanUnit {
 
     /**
      * The square this unit is currently occupying.
@@ -22,7 +22,7 @@ public abstract class Unit {
     /**
      * Creates a unit that is facing east.
      */
-    protected Unit() {
+    protected JpacmanUnit() {
         this.direction = Direction.EAST;
     }
 
@@ -65,7 +65,7 @@ public abstract class Unit {
 
     /**
      * Occupies the target square iff this unit is allowed to as decided by
-     * {@link Square#isAccessibleTo(Unit)}.
+     * {@link Square#isAccessibleTo(JpacmanUnit)}.
      *
      * @param target
      *            The square to occupy.

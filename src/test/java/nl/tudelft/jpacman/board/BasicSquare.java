@@ -17,7 +17,7 @@ class BasicSquare extends Square {
     }
 
     @Override
-    public boolean isAccessibleTo(Unit unit) {
+    public boolean isAccessibleTo(JpacmanUnit unit) {
         return true;
     }
 

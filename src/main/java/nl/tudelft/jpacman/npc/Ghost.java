@@ -2,7 +2,7 @@ package nl.tudelft.jpacman.npc;
 
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
-import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.board.JpacmanUnit;
 import nl.tudelft.jpacman.sprite.Sprite;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.Random;
  *
  * @author Jeroen Roosen
  */
-public abstract class Ghost extends Unit {
+public abstract class Ghost extends JpacmanUnit {
     /**
      * The sprite map, one sprite for each direction.
      */

@@ -57,7 +57,7 @@ class PacManUI( var game: Game,
   val keys = new PacKeyListener(keyMappings)
   addKeyListener(keys)
   val buttonPanel = new ButtonPanel(buttons, this)
-  scorePanel = new ScorePanel(game.getPlayers);
+  scorePanel = new ScorePanel(game.getPlayers)
   if (scoreFormatter != null) scorePanel.setScoreFormatter(scoreFormatter)
   boardPanel = new BoardPanel(game)
   val contentPanel: Container = getContentPane

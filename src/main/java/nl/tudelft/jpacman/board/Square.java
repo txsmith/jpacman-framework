@@ -19,7 +19,7 @@ public abstract class Square {
     /**
      * The units occupying this square, in order of appearance.
      */
-    private final List<Unit> occupants;
+    private final List<JpacmanUnit> occupants;
 
     /**
      * The collection of squares adjacent to this square.
@@ -67,7 +67,7 @@ public abstract class Square {
      * @return An immutable list of units occupying this square, in the order in
      *         which they occupied this square (i.e. oldest first.)
      */
-    public List<Unit> getOccupants() {
+    public List<JpacmanUnit> getOccupants() {
         return ImmutableList.copyOf(occupants);
     }
 
@@ -77,7 +77,7 @@ public abstract class Square {
      * @param occupant
      *            The unit to occupy this square.
      */
-    void put(Unit occupant) {
+    void put(JpacmanUnit occupant) {
         assert occupant != null;
         assert !occupants.contains(occupant);
 
@@ -90,7 +90,7 @@ public abstract class Square {
      * @param occupant
      *            The unit to be removed from this square.
      */
-    void remove(Unit occupant) {
+    void remove(JpacmanUnit occupant) {
         assert occupant != null;
         occupants.remove(occupant);
     }
@@ -102,8 +102,8 @@ public abstract class Square {
      * @return <code>true</code> iff all occupants of this square have this
      *         square listed as the square they are currently occupying.
      */
-    protected final boolean invariant(Square this) {
-        for (Unit occupant : occupants) {
+    protected final boolean invariant() {
+        for (JpacmanUnit occupant : occupants) {
             if (occupant.hasSquare() && occupant.getSquare() != this) {
                 return false;
             }
@@ -118,7 +118,7 @@ public abstract class Square {
      *            The unit to grant or deny access.
      * @return <code>true</code> iff the unit is allowed to occupy this square.
      */
-    public abstract boolean isAccessibleTo(Unit unit);
+    public abstract boolean isAccessibleTo(JpacmanUnit unit);
 
     /**
      * Returns the sprite of this square.
