@@ -1,4 +1,4 @@
-package nl.tudelft.jpacman.npc.ghost;
+package nl.tudelft.jpacman.npc;
 
 import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.sprite.PacManSprites;

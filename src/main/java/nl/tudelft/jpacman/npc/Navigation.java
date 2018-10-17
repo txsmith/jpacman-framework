@@ -1,4 +1,4 @@
-package nl.tudelft.jpacman.npc.ghost;
+package nl.tudelft.jpacman.npc;
 
 import java.util.ArrayList;
 import java.util.HashSet;

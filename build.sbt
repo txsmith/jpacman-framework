@@ -23,3 +23,7 @@ libraryDependencies += "org.junit.jupiter" % "junit-jupiter-api" % "5.3.1" % Tes
 libraryDependencies += "org.assertj" % "assertj-core" % "3.11.1" % Test
 
 
+// https://mvnrepository.com/artifact/io.monix/monix
+libraryDependencies += "io.monix" %% "monix" % "3.0.0-8084549"
+
+scalacOptions += "-Ypartial-unification"

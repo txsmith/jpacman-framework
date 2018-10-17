@@ -15,4 +15,4 @@
  *
  * @author Jeroen Roosen, 2014.
  */
-package nl.tudelft.jpacman.npc.ghost;
+package nl.tudelft.jpacman.npc;

@@ -8,8 +8,8 @@ import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.npc.Ghost;
-import nl.tudelft.jpacman.npc.ghost.GhostColor;
-import nl.tudelft.jpacman.npc.ghost.GhostFactory;
+import nl.tudelft.jpacman.npc.GhostColor;
+import nl.tudelft.jpacman.npc.GhostFactory;
 import nl.tudelft.jpacman.sprite.PacManSprites;
 import nl.tudelft.jpacman.sprite.Sprite;
 
@@ -98,7 +98,7 @@ public class LevelFactory {
             case CLYDE:
                 return ghostFact.createClyde();
             default:
-                return new RandomGhost(sprites.getGhostSprite(GhostColor.RED));
+                throw new RuntimeException("lol waddaya doin");
         }
     }
 
@@ -111,31 +111,4 @@ public class LevelFactory {
         return new Pellet(PELLET_VALUE, sprites.getPelletSprite());
     }
 
-    /**
-     * Implementation of an NPC that wanders around randomly.
-     *
-     * @author Jeroen Roosen
-     */
-    private static final class RandomGhost extends Ghost {
-
-        /**
-         * The suggested delay between moves.
-         */
-        private static final long DELAY = 175L;
-
-        /**
-         * Creates a new random ghost.
-         *
-         * @param ghostSprite
-         *            The sprite for the ghost.
-         */
-        RandomGhost(Map<Direction, Sprite> ghostSprite) {
-            super(ghostSprite, (int) DELAY, 0);
-        }
-
-        @Override
-        public Optional<Direction> nextAiMove() {
-            return Optional.empty();
-        }
-    }
 }
