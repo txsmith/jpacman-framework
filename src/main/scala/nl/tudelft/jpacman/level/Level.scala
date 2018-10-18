@@ -58,11 +58,11 @@ import scala.collection.JavaConverters._
   * @param collisionMap
   * The collection of collisions that should be handled.
   */
-@SuppressWarnings(Array("PMD.TooManyMethods")) class Level(val board: Board, val ghosts: util.List[Ghost],
-                                                           val startSquares: util.List[Square],
+@SuppressWarnings(Array("PMD.TooManyMethods")) class Level(val board: Board, val ghosts: List[Ghost],
+                                                           val startSquares: List[Square],
                                                            val collisions: CollisionMap)  {
   def ghostEvents() = {
-    ghosts.asScala.toList.map(_.ghostEvents()).foldK
+    ghosts.map(_.ghostEvents()).foldK
   }
 
   this.inProgress = false

@@ -2,22 +2,13 @@ package nl.tudelft.jpacman
 
 import java.awt.event.KeyEvent
 import java.io.IOException
-import java.util
-import java.util.List
 
-import nl.tudelft.jpacman.board.BoardFactory
-import nl.tudelft.jpacman.board.Direction
-import nl.tudelft.jpacman.game.Game
-import nl.tudelft.jpacman.game.GameFactory
-import nl.tudelft.jpacman.level.Level
-import nl.tudelft.jpacman.level.LevelFactory
-import nl.tudelft.jpacman.level.MapParser
-import nl.tudelft.jpacman.level.Player
-import nl.tudelft.jpacman.level.PlayerFactory
+import nl.tudelft.jpacman.board.{BoardFactory, Direction}
+import nl.tudelft.jpacman.game.{Game, GameFactory}
+import nl.tudelft.jpacman.level.{Level, LevelFactory, MapParser, PlayerFactory}
 import nl.tudelft.jpacman.npc.GhostFactory
 import nl.tudelft.jpacman.sprite.PacManSprites
-import nl.tudelft.jpacman.ui.PacManUI
-import nl.tudelft.jpacman.ui.PacManUiBuilder
+import nl.tudelft.jpacman.ui.{PacManUI, PacManUiBuilder}
 
 
 /**
@@ -50,7 +41,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder
 
   /**
     * @return The game object this launcher will start when { @link #launch()}
-    *                                                               is called.
+    *         is called.
     */
   def getGame: Game = game
 
@@ -117,7 +108,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder
 
   /**
     * @return A new factory using the sprites from { @link #getSpriteStore()}
-    *                                                      and the ghosts from { @link #getGhostFactory()}.
+    *         and the ghosts from { @link #getGhostFactory()}.
     */
   protected def getLevelFactory = new LevelFactory(getSpriteStore, getGhostFactory)
 
@@ -144,7 +135,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder
   }
 
   private def moveTowardsDirection(direction: Direction) = () => {
-      getGame.move(getSinglePlayer(getGame), direction)
+    getGame.move(getSinglePlayer(getGame), direction)
   }
 
   private def getSinglePlayer(game: Game) = {
